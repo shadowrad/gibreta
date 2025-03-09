@@ -78,6 +78,12 @@ const initMap = () => {
   })
 }
 
+const setPosition = () => {
+  marker.value.setLatLng(position.value)
+  map.value.setView(position.value, 13)
+  $q.notify({ message: 'Posición seteada!', type: 'info' })
+}
+
 const loadData = () => {
   const savedData = JSON.parse(localStorage.getItem('noteData_' + note_name.value))
   if (savedData) {
@@ -86,7 +92,7 @@ const loadData = () => {
     position.value = savedData.position
     originalPosition.value = { ...savedData.position }
   }
-  initMap()
+  setPosition()
   $q.notify({ message: 'Datos levantados!', type: 'positive' })
 }
 
